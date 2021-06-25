@@ -3,14 +3,14 @@ import React, {useEffect, useState} from 'react';
 
 function Composers() {
 
-  const [data, getComposers] = useState({ composers: []});
+  const [data, setComposers] = useState({ composers: []});
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios('https://api.openopus.org/composer/list/pop.json');
 
-      getComposers(result.data);
-      console.log(data, getComposers)
+      setComposers(result.data);
+      console.log(data, setComposers)
       console.log(result.data.composers)
     };
     fetchData();
