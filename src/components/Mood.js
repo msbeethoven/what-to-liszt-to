@@ -1,10 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
- let epochsList = ['medieval', 'renaissance', 'baroque', 'classical', 'early romantic', 'romantic', ' late romantic', '20th century', 'post-war', '21st century']
-
 function Mood() {
   const [epochs, setEpochs] = useState([
+    "Select one...",
     "medieval",
     "renaissance",
     "baroque",
@@ -16,59 +15,50 @@ function Mood() {
     "post-war",
     "21st century",
   ]);
-  const [fetchedData, setFetchedData] = useState('');
+  const [selectedEpoch, setSelectedEpoch] = useState('');
 
   // const handleEpochTypeChange = (e) => (console.clear(), console.log(epochs[e.target.value]));
 
-  const handleEpochTypeChange = (e) => (epochs[e.target.value])
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    fetchData();
-  }
-
-    // useEffect(() => {
-    //   async function getComposers() {
-    //     const response = await axios(`https://api.openopus.org/composer/list/epoch/${epochs}.json`);
-    //     const body = await response.json();
-    //     console.log(body)
-    //     setEpochs(body.composers.map())
-       
-    //   }
-    // })
-
-  // const [data, setEpochs] = useState({composers: []});
-
   async function fetchData() {
-    const { data } = await axios.get(`https://api.openopus.org/composer/list/epoch/${epochs}.json`)
-    console.log('data', data)
-    setFetchedData(data);
+    const { data } = await axios.get(`https://api.openopus.org/composer/list/epoch/${selectedEpoch}.json`);
+    //data.request.item = setSelectedEpoch(); need to change item ?
+    console.log('epochs', epochs);
+    console.log('data', data )
+   // setFetchedData(data);
+    //setSelectedEpoch()
     //setEpochs(data.request.item.split(','))
   }
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+  }, [selectedEpoch]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const result = await axios(`https://api.openopus.org/composer/list/epoch/${epochs}.json`);
-  //     console.log('setEpochs',result.data.request.item.split(','))
-  //     setEpochs(result.data.request.item.split(','));
-  //     //setEpochs(epochs)
-  //   };
-  //   fetchData();
-  // }, [])
+  function onChange(event) {
+    //console.log(epochs[event.target.value])
+    const value = epochs[event.target.value]
+    console.log('value', value)
+    setSelectedEpoch(value);
+  }
 
-  //setEpochs will effect epochs.map (when you changed it to ['burzum', 'mayhem'], that's what it mapped over.) the second item in the u3seState is a function to update the original state, aka setState.
+  const handleSubmit = e => {
+    e.preventDefault();
+    fetchData();
+    setSelectedEpoch(selectedEpoch);
+  }
+
+  // const handleChange = (e) => (console.log( epochs[e.target.value]));
+  
+  //console.log(epochs[e.target.value]) --> the epoch string
+
+  //setEpochs will effect epochs.map (when you changed it to ['burzum', 'mayhem'], that's what it mapped over.) the second item in the useState is a function to update the original state, aka setState.
 
   return (
     <div className="Mood">
-      <form onSubmit={handleSubmit}>
+       <form onSubmit={handleSubmit} >
       <p>What are you in the Mood for?</p>
-      <label for="epoch">Epoch:</label>
-      <select onChange={(e) =>setEpochs(epochs[e.target.value])}>
-        {epochsList.map((epoch, key) => 
+      <label htmlFor="epoch">Epoch:</label>
+      <select onChange={onChange}>
+        {epochs.map((epoch, key) => 
           <option value={key}>{epoch}</option>
         )}
       </select>
