@@ -3,7 +3,9 @@ import React, {useEffect, useState} from 'react';
 
 function Composers() {
 
-  const [data, setComposers] = useState({ composers: []});
+  const [data, setComposers] = useState({       
+    composers: []
+  });
 
   useEffect(() => {
     const fetchData = async () => {
