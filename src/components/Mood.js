@@ -6,16 +6,16 @@ import { useIsMount } from "./useIsMount"
 function Mood() {
   const [epochs, setEpochs] = useState([
     "Select one...",
-    "medieval",
-    "renaissance",
-    "baroque",
-    "classical",
-    "early romantic",
-    "romantic",
-    "late romantic",
-    "20th century",
-    "post-war",
-    "21st century",
+    "Medieval",
+    "Renaissance",
+    "Baroque",
+    "Classical",
+    "Early Romantic",
+    "Romantic",
+    "Late Romantic",
+    "20th Century",
+    "Post-War",
+    "21st Century",
   ]);
   const [selectedEpoch, setSelectedEpoch] = useState("Select one...");
   const [writers, setWriters] = useState([]); //named writers so as to not get confused with API's composers attribute
@@ -33,12 +33,12 @@ function Mood() {
     console.log("epochs", epochs);
     if (selectedEpoch !== "Select one...") {
       let bab = data.composers;
-      console.log("data", data.composers);
+      console.log("data", bab);
       let testArr = [];
-      bab.forEach((comp) => testArr.push(comp.complete_name));
-      console.log("testarr", ...testArr);
+      //bab.forEach((comp) => testArr.push(comp.complete_name ));
+      //console.log("testarr", ...testArr);
       //return data.composers
-      setWriters(testArr);
+      setWriters(bab);
       console.log("unsolved", writers);
     }
 
@@ -95,7 +95,7 @@ function Mood() {
         <label htmlFor="epoch">Epoch:</label>
         <select onChange={onChange}>
           {epochs.map((epoch, key) => (
-            <option value={key}>{epoch}</option>
+            <option key={key} value={key}>{epoch}</option>
           ))}
         </select>
         {selectedEpoch === "Select one..." ? (
