@@ -3,9 +3,11 @@ import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import ComposerResults from "./ComposerResults";
 import { useIsMount } from "./useIsMount"
 
+let SELECT_ONE = 'Select one...';
+
 function Mood() {
   const [epochs, setEpochs] = useState([
-    "Select one...",
+    SELECT_ONE,
     "Medieval",
     "Renaissance",
     "Baroque",
@@ -17,7 +19,7 @@ function Mood() {
     "Post-War",
     "21st Century",
   ]);
-  const [selectedEpoch, setSelectedEpoch] = useState("Select one...");
+  const [selectedEpoch, setSelectedEpoch] = useState(SELECT_ONE);
   const [writers, setWriters] = useState([]); //named writers so as to not get confused with API's composers attribute
   const [isSelectOne, setSelectOneStatus] = useState(true);
   //if select one is the epoch (!selectedEpoch? ''? ), then do not render
@@ -31,7 +33,7 @@ function Mood() {
     );
     console.log("what is this", selectedEpoch);
     console.log("epochs", epochs);
-    if (selectedEpoch !== "Select one...") {
+    if (selectedEpoch !== SELECT_ONE) {
       let bab = data.composers;
       console.log("data", bab);
       let testArr = [];
@@ -57,17 +59,16 @@ function Mood() {
   useEffect(() => {
     fetchData();
   }, [selectedEpoch]);
-
-
-
   
   function onChange(event) {
+    console.log('event in onChange', event)
     //console.log(epochs[event.target.value])
     const value = epochs[event.target.value];
     setSelectedEpoch(value); //name of epoch
   }
 
   const handleSubmit = (e) => {
+    
     e.preventDefault();
     fetchData();
     setSelectedEpoch(selectedEpoch);
@@ -98,7 +99,7 @@ function Mood() {
             <option key={key} value={key}>{epoch}</option>
           ))}
         </select>
-        {selectedEpoch === "Select one..." ? (
+        {selectedEpoch === SELECT_ONE ? (
           console.log('girl i said not to')
         ) : (
           <ComposerResults whatever={writers} />

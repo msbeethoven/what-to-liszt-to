@@ -4,47 +4,47 @@ import {
   Route,
   Link,
   useRouteMatch,
-  useParams
+  useParams,
 } from "react-router-dom";
-import ComposerCard from "./ComposerCard";
+import ComposerWorks from "./ComposerWorks";
 
 function ComposerResults(props) {
-
   return (
     <Router>
-    <div>
-      
-      {console.log(
-        "wig",
-        props.whatever
-      )}
+      <div class="composers-list">
+        {console.log("wig", props.whatever)}
 
-      <ul>
+        <ul>
+          {props.whatever.map((comp) => (
+            <li key={comp.id}>
+              <Link to={`${comp.id}`}>{comp.complete_name}</Link>
+            </li>
+          ))}
+        </ul>
+
         {props.whatever.map((comp) => (
-          <li key={comp.id}>
-            <Link to={`${comp.id}`}>{comp.complete_name}</Link>
-          </li>
+          <Switch>
+            {console.log("tf", comp.id)}
+            <Route path={`/${comp.id}`}>
+              <About key={comp.id} chicken={comp} />
+            </Route>
+          </Switch>
         ))}
-      </ul>
-   
-      {props.whatever.map((comp) => (
-        <Switch>
-          {console.log('tf', comp.id)}
-        <Route path={`/${comp.id}`}>
-          <About chicken={comp}/>
-        </Route>
-      </Switch>
-      ))}
-      
-    </div>
+      </div>
     </Router>
   );
 }
 
 function About(props) {
-  console.log('now what', props)
-  return <h2>{props.chicken.birth}</h2>;
+  console.log("now what", props);
+  return (
+    <div className="composer-card">
+      <img src={props.chicken.portrait} alt="look at that handsome devil"/>
+      <h2>birth date: {props.chicken.birth} </h2>
+      <h2>death date: {props.chicken.death == null ? 'still alive!' : props.chicken.death} </h2>
+      <h2>Works: <ComposerWorks /> </h2>
+    </div>
+  );
 }
-
 
 export default ComposerResults;
