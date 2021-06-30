@@ -6,28 +6,59 @@ import React, {useEffect, useState} from 'react';
 
 function ComposerWorks(props) {
 
-  const [works, setWorks] = useState([]);
-  const [id, setID] = useState(0);
+  console.log('pls id', props.id)
+
+  const [works, setWorks] = useState(['🍓', '🥭', '🍌']);
+
+  //id: data.composer[x].id
+  //works: data.works = obj.title
 
   useEffect(() => {
-    async function fetchData() {
-      const {data} = await axios.get('https://api.openopus.org/work/list/composer/149/genre/all.json');
-      //console.log('composer works data', data.works.forEach((work) => {console.log(work.title)}));
-
-      let workTitlesArr = [];
-
-      let workTitles = data.works.forEach((work) => (workTitlesArr.push(work.title)));
-
-      console.log('girl pls', workTitlesArr)
-
-      setWorks(workTitlesArr);
-
-      //setWorks(data.works);
-
-      console.log('excuse me ', works)
-    };
+    //setWorks(['butt', '1', '3']);
+    
     fetchData();
-  }, [works]);
+  }, []);
+
+  const fetchData = () => {
+    axios.get(
+      `https://api.openopus.org/work/list/composer/${props.id}/genre/all.json`
+    ).then((response) => {
+      console.log('now what', response.data.works)
+      const allWorks = response.data.works
+      setWorks(allWorks);
+    })
+  }
+
+  // async function fetchData() {
+  //   const {data} = await axios.get(
+  //     'https://api.openopus.org/work/list/composer/149/genre/all.json'
+  //   );
+  //   console.log('mama mia', data.works);
+  // }
+
+  
+
+  
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const {data} = await axios.get('https://api.openopus.org/work/list/composer/149/genre/all.json');
+  //     //console.log('composer works data', data.works.forEach((work) => {console.log(work.title)}));
+
+  //     let workTitlesArr = [];
+
+  //     let workTitles = data.works.forEach((work) => (workTitlesArr.push(work.title)));
+
+  //     console.log('girl pls', workTitlesArr)
+
+  //     setWorks(workTitlesArr);
+
+  //     //setWorks(data.works);
+
+  //     console.log('excuse me ', works)
+  //   };
+  //   fetchData();
+  // }, []);
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -41,13 +72,15 @@ function ComposerWorks(props) {
 
   return (
     <div className="composer-card">
-      <p>knowledge!</p>
       <ul>
         {console.log('haw',works)}
 
-{/* 
-        {(works.map((work) => {
-          <p>{console.log('colle', work)}</p>
+        {(works.map((piece) => {
+          return <p>{piece.title}</p>
+        }))}
+
+        {/* {(works.map((work) => {
+          return <p>{work}</p>
         }))} */}
       
         

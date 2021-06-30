@@ -42,7 +42,7 @@ function About(props) {
       <img src={props.chicken.portrait} alt="look at that handsome devil"/>
       <h2>birth date: {props.chicken.birth} </h2>
       <h2>death date: {props.chicken.death == null ? 'still alive!' : props.chicken.death} </h2>
-      <h2>Works: <ComposerWorks /> </h2>
+      <h2>Works: <ComposerWorks id={props.chicken.id} /> </h2>
     </div>
   );
 }

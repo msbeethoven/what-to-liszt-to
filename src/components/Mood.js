@@ -36,25 +36,10 @@ function Mood() {
     if (selectedEpoch !== SELECT_ONE) {
       let bab = data.composers;
       console.log("data", bab);
-      let testArr = [];
-      //bab.forEach((comp) => testArr.push(comp.complete_name ));
-      //console.log("testarr", ...testArr);
-      //return data.composers
       setWriters(bab);
       console.log("unsolved", writers);
-    }
-
-    
+    } 
   }
-
-  // const useIsMount = () => {
-  //   const isMountRef = useRef(true);
-  //   useEffect(() => {
-  //     fetchData();
-  //   }, [selectedEpoch]);
-  //   return isMountRef.current;
-  // };
-// no render at all but a start 
 
   useEffect(() => {
     fetchData();
@@ -92,7 +77,8 @@ function Mood() {
   return (
     <div className="Mood">
       <form onSubmit={handleSubmit}>
-        <p>What are you in the Mood for?</p>
+        <a href="/">What are you in the Mood for?</a>
+        <br/>
         <label htmlFor="epoch">Epoch:</label>
         <select onChange={onChange}>
           {epochs.map((epoch, key) => (
