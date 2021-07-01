@@ -2,21 +2,20 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  useRouteMatch,
-  useParams,
+  Link
 } from "react-router-dom";
 import ComposerWorks from "./ComposerWorks";
 
 function ComposerResults(props) {
   return (
     <Router>
-      <div class="composers-list">
+      <div className="composers-list">
         {console.log("wig", props.whatever)}
 
         <ul>
-          {props.whatever.map((comp) => (
-            <li key={comp.id}>
+          {props.whatever.map((comp, key) => (
+            <li key={key} value={key}>
+              {console.log(key)}
               <Link to={`${comp.id}`}>{comp.complete_name}</Link>
             </li>
           ))}

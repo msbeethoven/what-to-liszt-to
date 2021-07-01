@@ -8,14 +8,13 @@ function ComposerWorks(props) {
 
   console.log('pls id', props.id)
 
-  const [works, setWorks] = useState(['🍓', '🥭', '🍌']);
+  const [works, setWorks] = useState([]);
 
   //id: data.composer[x].id
   //works: data.works = obj.title
 
   useEffect(() => {
     //setWorks(['butt', '1', '3']);
-    
     fetchData();
   }, []);
 
