@@ -38,9 +38,9 @@
 }
 
 a {
-  color: hotpink;
+  color: white;
 }
 
-.composers-list { 
-  column-count: 3;
+.card-body {
+  background-color: rosybrown;
 }

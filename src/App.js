@@ -1,6 +1,7 @@
 import './App.css';
 //import Composers from './components/Composers';
 import Mood from './components/Mood';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
