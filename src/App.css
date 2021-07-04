@@ -41,6 +41,10 @@ a {
   color: white;
 }
 
+li {
+  color: white;
+}
+
 .card-body {
   background-color: rosybrown;
 }

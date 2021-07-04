@@ -1,12 +1,12 @@
-import axios from 'axios';
-import React, {useEffect, useState} from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import FavButton from './FavButton';
 
 //List works by composer ID
-//GET /work/list/composer/129/genre/all.json 
+//GET /work/list/composer/129/genre/all.json
 
 function ComposerWorks(props) {
-
-  console.log('pls id', props.id)
+  console.log("pls id", props.id);
 
   const [works, setWorks] = useState([]);
 
@@ -19,14 +19,16 @@ function ComposerWorks(props) {
   }, []);
 
   const fetchData = () => {
-    axios.get(
-      `https://api.openopus.org/work/list/composer/${props.id}/genre/all.json`
-    ).then((response) => {
-      console.log('now what', response.data.works)
-      const allWorks = response.data.works
-      setWorks(allWorks);
-    })
-  }
+    axios
+      .get(
+        `https://api.openopus.org/work/list/composer/${props.id}/genre/all.json`
+      )
+      .then((response) => {
+        console.log("now what", response.data.works);
+        const allWorks = response.data.works;
+        setWorks(allWorks);
+      });
+  };
 
   // async function fetchData() {
   //   const {data} = await axios.get(
@@ -34,10 +36,6 @@ function ComposerWorks(props) {
   //   );
   //   console.log('mama mia', data.works);
   // }
-
-  
-
-  
 
   // useEffect(() => {
   //   async function fetchData() {
@@ -72,20 +70,23 @@ function ComposerWorks(props) {
   return (
     <div className="composer-card">
       <ul>
-        {console.log('haw',works)}
+        {console.log("haw", works)}
 
-        {(works.map((piece) => {
-          return <p>{piece.title}</p>
-        }))}
+        {works.map((piece) => {
+          return (
+            <div>
+              <p>{piece.title}</p>
+              <FavButton pieceInfo={piece} />
+            </div>
+          );
+        })}
 
         {/* {(works.map((work) => {
           return <p>{work}</p>
         }))} */}
-      
-        
       </ul>
     </div>
-  )
+  );
 }
 
 export default ComposerWorks;
