@@ -3,14 +3,16 @@ import './App.css';
 import Mood from './components/Mood';
 import FavoritesPage from './components/FavoritesPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './components/Header';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         {/* <RouterExample /> */}
-        <Mood />
-        <FavoritesPage />
+        <Header />
+        
+        
         {/* <Composers /> */}
       </header>
     </div>
