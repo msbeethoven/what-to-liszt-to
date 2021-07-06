@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import FavoritesPage from './FavoritesPage';
 
 function FavButton(props) {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState('false');
   const [favpiece, setFavPiece] = useState(
     {
       pieceInfo: " "
@@ -22,7 +22,7 @@ function FavButton(props) {
   }
 
   useEffect(() => {
-    setToggle(true);
+    setToggle('true');
     // setFavPiece(
     //   {
     //     pieceInfo: `${props.pieceInfo.title}`
@@ -34,7 +34,7 @@ function FavButton(props) {
   return (
     <div>
       <button onClick={handleClick} clicked={toggle} >fav</button>
-      <FavoritesPage favorite={favpiece} />
+      {/* <FavoritesPage favorite={favpiece} /> */}
     </div>
   )
 }

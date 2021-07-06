@@ -3,6 +3,7 @@ import ComposerWorks from "./ComposerWorks";
 import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
+import FavoritesPage from "./FavoritesPage";
 
 function ComposerResults(props) {
   return (
@@ -72,6 +73,7 @@ function About(props) {
           </Accordion.Collapse>
         </Card>
       </Accordion>
+      <FavoritesPage favorite={'hey'} />
     </div>
   );
 }
