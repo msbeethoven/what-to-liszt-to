@@ -42,7 +42,7 @@ function Mood() {
     fetchData();
   }, [selectedEpoch]);
   
-  function onChange(event) {
+  function handleChange(event) {
     console.log('event in onChange', event)
     //console.log(epochs[event.target.value])
     const value = epochs[event.target.value];
@@ -69,7 +69,7 @@ function Mood() {
         <a href="/">What are you in the Mood for?</a>
         <br/>
         <label htmlFor="epoch">Epoch:</label>
-        <select onChange={onChange}>
+        <select onChange={handleChange}>
           {epochs.map((epoch, key) => (
             <option key={key} value={key}>{epoch}</option>
           ))}

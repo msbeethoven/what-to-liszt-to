@@ -16,9 +16,12 @@ function FavoritesPage(props) {
 
   return (
     <div className="favorites-page">
-      {console.log('did this work', props.favorite)}
+      {console.log('did this work', props)}
 
-      {props.favorite === undefined ? 'asdsfd' : props.favorite }
+      test
+      {props.favorite}
+
+      {/* {props.favorite === undefined ? 'asdsfd' : props.favorite } */}
       
       
       

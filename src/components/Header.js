@@ -16,6 +16,7 @@ function Header() {
             </li>
             <li>
               <Link to="/favorites">Favorites</Link>
+              {/* <Link to={{pathname:'/favorites', state:{}}}>Favorites</Link> */}
             </li>
           </ul>
         </nav>

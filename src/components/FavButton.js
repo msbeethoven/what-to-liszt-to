@@ -2,39 +2,28 @@ import React, {useState, useEffect} from 'react';
 import FavoritesPage from './FavoritesPage';
 
 function FavButton(props) {
+  // console.log('favbutton props', props) //object for every song
   const [toggle, setToggle] = useState('false');
   const [favpiece, setFavPiece] = useState(
-    {
-      pieceInfo: " "
-    }
+    []
   )
 
   function handleClick(e) {
     e.preventDefault();
     console.log('you faved!', toggle);
-    console.log('your fav piece!', favpiece);
-    setFavPiece(
-      {
-        pieceInfo: `${props.pieceInfo.title}`
-      }
-    );
-   
+    console.log('your fav piece!', favpiece); 
   }
 
   useEffect(() => {
     setToggle('true');
-    // setFavPiece(
-    //   {
-    //     pieceInfo: `${props.pieceInfo.title}`
-    //   }
-    // );
-    
+    setFavPiece(
+      `${props.pieceInfo.title}`
+    );
   }, []);
 
   return (
     <div>
       <button onClick={handleClick} clicked={toggle} >fav</button>
-      {/* <FavoritesPage favorite={favpiece} /> */}
     </div>
   )
 }
