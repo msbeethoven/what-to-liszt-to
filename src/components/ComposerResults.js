@@ -25,7 +25,7 @@ function ComposerResults(props) {
           <Switch>
             {console.log("tf", comp.id)}
             <Route path={`/${comp.id}`}>
-              <About key={comp.id} chicken={comp} />
+              <About handleFavoriteAdd = {props.handleFavoriteAdd} key={comp.id} chicken={comp} />
             </Route>
           </Switch>
         ))}
@@ -69,7 +69,7 @@ function About(props) {
           </Card.Header>
           <Accordion.Collapse eventKey="1">
             <Card.Body scrollable="true">
-              <ComposerWorks id={props.chicken.id} />
+              <ComposerWorks handleFavoriteAdd = {props.handleFavoriteAdd} id={props.chicken.id} />
             </Card.Body>
           </Accordion.Collapse>
         </Card>

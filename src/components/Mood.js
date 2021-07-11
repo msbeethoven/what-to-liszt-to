@@ -4,7 +4,7 @@ import ComposerResults from "./ComposerResults";
 
 let SELECT_ONE = 'Select one...';
 
-function Mood() {
+function Mood({handleFavoriteAdd}) {
   const [epochs] = useState([
     SELECT_ONE,
     "Medieval",
@@ -77,7 +77,7 @@ function Mood() {
         {selectedEpoch === SELECT_ONE ? (
           console.log('girl i said not to')
         ) : (
-          <ComposerResults whatever={writers} />
+          <ComposerResults handleFavoriteAdd = {handleFavoriteAdd} whatever={writers} />
         )}
 
         <input type="submit" value="Choose" />

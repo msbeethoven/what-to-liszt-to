@@ -76,7 +76,7 @@ function ComposerWorks(props) {
           return (
             <div>
               <p>{piece.title}</p>
-              <FavButton pieceInfo={piece} />
+              <FavButton handleFavoriteAdd = {props.handleFavoriteAdd} pieceInfo={piece} />
             </div>
           );
         })}

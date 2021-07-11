@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import {withRouter} from 'react-router-dom';
-import FavButton  from "./FavButton";
-
-function FavoritesPage(props) {
-  console.log('whats going on', props)
-  
-  // these console logs were populated when the <FavoritesPage /> comp was in the render of FavButton. It was just the list tho. 
-
-  const [favorites, setFavorites] = useState({});
-  useEffect(() => {
-    setFavorites(props)
-  },[favorites])
+//useEffect check localstorage (header defined favArr)
+// filter last index , filter thru favarr , only the one that didnt have that id that was clicked again , reset array without the one taken out 
 
 
+function FavoritesPage({favArr}) {
   return (
     <div className="favorites-page">
-      {console.log('did this work', props)}
+      {console.log('did this work', favArr)}
 
-      test
-      {props.favorite}
+      {favArr && favArr.map(favPiece => {
+        return (
+          <p>{favPiece.title}</p>
+        )
+    
+      })}
 
       {/* {props.favorite === undefined ? 'asdsfd' : props.favorite } */}
       

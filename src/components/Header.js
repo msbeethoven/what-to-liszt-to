@@ -1,9 +1,19 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import React, {useState} from 'react'
 
 import FavoritesPage from "./FavoritesPage";
 import Mood from './Mood';
 
 function Header() {
+  const [favArr, setFavArr] = useState([]);
+  const [currFavorite, setCurrFavorite] = useState({});
+
+  function handleFavoriteAdd(newFav) {
+    const updatedFavArr = [...favArr, newFav];
+    setFavArr(updatedFavArr);
+    console.log('favArr', favArr )
+  }
+
   return (
     <div className="header">
 
@@ -25,10 +35,10 @@ function Header() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/favorites">
-            <FavoritesPage />
+            <FavoritesPage favArr = {favArr} />
           </Route>
           <Route path="/">
-            <Mood />
+            <Mood handleFavoriteAdd = {handleFavoriteAdd} />
           </Route>
         </Switch>
       </div>
